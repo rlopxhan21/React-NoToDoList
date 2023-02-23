@@ -15,24 +15,46 @@ export const Display = (props) => {
       direction={{ xs: "column", md: "row" }}
       marginTop={4}
       justifyContent={{ xs: "center", md: "space-between" }}
+      alignItems="flex-start"
       mx={2}
     >
       <Box width={{ xs: "90%", md: "45%" }} margin={{ xs: "auto" }}>
         <Typography variant="h4" textAlign={"center"}>
           Entry List
         </Typography>
-        <Stack textAlign={"start"}>
+        <Stack
+          height={"400px"}
+          overflow="scroll"
+          p={2}
+          marginBottom={2}
+          sx={{ border: "1px solid #dee2e6", borderRadius: "10px" }}
+        >
+          {props.entry_list.length === 0 && (
+            <Button
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              disabled
+            >
+              No Data Found!
+            </Button>
+          )}
           {props.entry_list.map((item, i) => (
             <Stack
               direction={"row"}
               justifyContent="space-between"
+              alignItems={"center"}
+              p={2}
               marginBottom={2}
               key={i}
+              sx={{ background: "#f8f9fa", borderRadius: "10px" }}
             >
-              <Button disabled>{item.task}</Button>
-              <Button disabled>{item.no_hrs} Hours</Button>
+              <Typography variant="button">{item.task}</Typography>
+              <Typography variant="button">{item.no_hrs} Hours</Typography>
               <ButtonGroup
-                variant="contained"
+                variant="outlined"
                 aria-label="outlined primary button group"
               >
                 <Tooltip title="Delete" placement="top">
@@ -67,18 +89,40 @@ export const Display = (props) => {
         <Typography variant="h4" textAlign={"center"}>
           Bad List
         </Typography>
-        <Stack textAlign={"start"}>
+        <Stack
+          textAlign={"start"}
+          height={"400px"}
+          overflow="scroll"
+          p={2}
+          marginBottom={2}
+          sx={{ border: "1px solid #dee2e6", borderRadius: "10px" }}
+        >
+          {props.bad_list.length === 0 && (
+            <Button
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              disabled
+            >
+              No Data Found!
+            </Button>
+          )}
           {props.bad_list.map((item, i) => (
             <Stack
               direction={"row"}
               justifyContent="space-between"
+              alignItems={"center"}
+              p={2}
               marginBottom={2}
               key={i}
+              sx={{ background: "#f8f9fa", borderRadius: "10px" }}
             >
-              <Button disabled>{item.task}</Button>
-              <Button disabled>{item.no_hrs} Hours</Button>
+              <Typography variant="button">{item.task}</Typography>
+              <Typography variant="button">{item.no_hrs} Hours</Typography>
               <ButtonGroup
-                variant="contained"
+                variant="outlined"
                 aria-label="outlined primary button group"
               >
                 <Tooltip title="Delete">

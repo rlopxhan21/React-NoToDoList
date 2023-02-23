@@ -6,7 +6,6 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import "./App.css";
 import { Display } from "./component/Display";
 import { Form } from "./component/Form";
 
@@ -65,28 +64,38 @@ function App() {
   const onEntryDeleteHandler = (i) => {
     const newEntryData = entryData.filter((item, index) => index !== i);
     setEntryData(newEntryData);
+    localStorage.setItem(
+      "data",
+      JSON.stringify({ entry: newEntryData, bad: badData })
+    );
   };
 
   const onBadDataDeleteHandler = (i) => {
     const newBadData = badData.filter((item, index) => index !== i);
     setBadData(newBadData);
+    localStorage.setItem(
+      "data",
+      JSON.stringify({ entry: entryData, bad: newBadData })
+    );
   };
 
   let entrySum = 0;
   entryData.map((item) => {
     entrySum = +item.no_hrs + entrySum;
+    return;
   });
 
   let badSum = 0;
   badData.map((item) => {
     badSum = +item.no_hrs + badSum;
+    return;
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box>
-        <Typography variant="h1" textAlign={"center"}>
+        <Typography variant="h2" textAlign={"center"} my={2}>
           Not To Do List
         </Typography>
         <Form

@@ -91,6 +91,8 @@ function App() {
     return;
   });
 
+  entrySum += badSum;
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

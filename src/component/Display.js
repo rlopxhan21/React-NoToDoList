@@ -6,10 +6,12 @@ import {
   Stack,
   Tooltip,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import React from "react";
 
 export const Display = (props) => {
+  const smallScreen = useMediaQuery((theme) => theme.breakpoints.down("md"));
   return (
     <Stack
       direction={{ xs: "column", md: "row" }}
@@ -43,7 +45,7 @@ export const Display = (props) => {
           )}
           {props.entry_list.map((item, i) => (
             <Stack
-              direction={"row"}
+              direction={{ xs: "column", md: "row" }}
               justifyContent="space-between"
               alignItems={"center"}
               p={2}
@@ -56,6 +58,7 @@ export const Display = (props) => {
               <ButtonGroup
                 variant="outlined"
                 aria-label="outlined primary button group"
+                fullWidth={smallScreen ? true : false}
               >
                 <Tooltip title="Delete" placement="top">
                   <Button
@@ -75,11 +78,11 @@ export const Display = (props) => {
                     Move
                   </Button>
                 </Tooltip>
-              </ButtonGroup>{" "}
+              </ButtonGroup>
             </Stack>
           ))}
         </Stack>
-        {!(props.entry_list.length === 0) && (
+        {!(props.entry_list.length === 0 && props.bad_list.length === 0) && (
           <Typography variant="h6" textAlign={"center"}>
             The total hours allocated for this week is {props.entrySum} Hours
           </Typography>
@@ -111,7 +114,7 @@ export const Display = (props) => {
           )}
           {props.bad_list.map((item, i) => (
             <Stack
-              direction={"row"}
+              direction={{ xs: "column", md: "row" }}
               justifyContent="space-between"
               alignItems={"center"}
               p={2}
@@ -124,6 +127,7 @@ export const Display = (props) => {
               <ButtonGroup
                 variant="outlined"
                 aria-label="outlined primary button group"
+                fullWidth={smallScreen ? true : false}
               >
                 <Tooltip title="Delete">
                   <Button

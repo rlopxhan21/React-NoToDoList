@@ -42,6 +42,7 @@ export const Form = (props) => {
           name="task"
           label="Enter a Task*"
           variant="outlined"
+          autoFocus
           onChange={onChangeHandler}
           value={input?.task || ""}
           error={error === "both" || error === "task"}
